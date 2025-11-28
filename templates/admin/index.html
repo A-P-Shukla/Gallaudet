@@ -1,0 +1,114 @@
+{% extends 'admin/master.html' %}
+{% block body %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-12">
+            <h1>Admin Dashboard </h1>
+            <p class="lead">Welcome back, {{ current_user.username }}.    <ul class="nav navbar-nav">
+    <li class="dropdown">
+      <a class="dropdown-toggle" data-toggle="dropdown" href="#">Go to Site <span class="caret"></span></a>
+      <ul class="dropdown-menu">
+        <li><a href="{{ url_for('index') }}" target="_blank">Home Page</a></li>
+        <li><a href="{{ url_for('about') }}" target="_blank">About</a></li>
+        <li><a href="{{ url_for('contact') }}" target="_blank">Contact</a></li>
+      </ul>
+    </li>
+  </ul></p>
+        </div>
+    </div>
+
+<!-- Stat Cards Row -->
+<div class="row">
+    <div class="col-md-4 mb-4">
+        <div class="dashboard-stat-card">
+            <h3 class="text-muted">Total Users</h3>
+            <p class="h1 font-weight-bold">{{ total_users }}</p>
+        </div>
+    </div>
+    <div class="col-md-4 mb-4">
+        <div class="dashboard-stat-card">
+            <h3 class="text-muted">New Users Today</h3>
+            <p class="h1 font-weight-bold">{{ new_users_today }}</p>
+        </div>
+    </div>
+    <div class="col-md-4 mb-4">
+        <div class="dashboard-stat-card">
+            <h3 class="text-muted">Quick Actions</h3>
+            <div class="btn-group mt-3">
+                <a href="{{ url_for('user.create_view') }}" class="btn btn-primary">Create User</a>
+                <a href="{{ url_for('user.export', export_type='csv') }}" class="btn btn-info">Export Users</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Main Content Row (Chart and Recent Activity) -->
+<div class="row">
+    <!-- User Registration Chart -->
+    <div class="col-lg-8 mb-4">
+        <div class="dashboard-stat-card">
+            <h3>User Registrations (Last 7 Days)</h3>
+            <canvas id="userRegistrationsChart"></canvas>
+        </div>
+    </div>
+    
+    <!-- Recently Active Users -->
+    <div class="col-lg-4 mb-4">
+        <div class="dashboard-stat-card">
+            <h3>Recently Active Users</h3>
+            {% if recent_users %}
+            <ul class="list-group list-group-flush recent-users-list">
+                {% for user in recent_users %}
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    <span>
+                        <strong>{{ user.username }}</strong>
+                        <small class="text-muted d-block">{{ user.email }}</small>
+                    </span>
+                    <small>{{ user.last_login.strftime('%Y-%m-%d %H:%M') }}</small>
+                </li>
+                {% endfor %}
+            </ul>
+            {% else %}
+            <p class="text-muted">No user activity recorded yet.</p>
+            {% endif %}
+            <a href="{{ url_for('user.index_view') }}" class="btn btn-default btn-block mt-3">View All Users</a>
+        </div>
+    </div>
+</div>
+</div>
+<!-- JavaScript for the Chart -->
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const ctx = document.getElementById('userRegistrationsChart').getContext('2d');
+        const userRegistrationsChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: {{ chart_labels|safe }},
+                datasets: [{
+                    label: 'New Users',
+                    data: {{ chart_data|safe }},
+                    backgroundColor: 'rgba(30, 41, 59, 0.8)', // Corresponds to your brand-dark
+                    borderColor: 'rgba(30, 41, 59, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        ticks: {
+                            stepSize: 1
+                        }
+                    }
+                },
+                plugins: {
+                    legend: {
+                        display: false
+                    }
+                }
+            }
+        });
+    });
+</script>
+{% endblock %}

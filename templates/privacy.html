@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy - Modern UI</title>
+    <!-- Link to your central stylesheet -->
+    <link href="{{ url_for('static', filename='style.css') }}" rel="stylesheet">
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- We need the Tailwind Typography plugin for nicely styled legal text -->
+    <script src="https://cdn.tailwindcss.com?plugins=typography"></script> 
+    <script>
+  // This config now reads from your style.css file!
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          'brand-dark': 'var(--color-brand-dark)',
+          'brand-light': 'var(--color-brand-light)',
+        }
+      }
+    }
+  }
+</script>
+</head>
+<body class="bg-brand-light text-slate-800 antialiased">
+
+{% include '_header.html' %}
+
+    <main class="max-w-4xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
+        <div class="bg-white p-8 md:p-12 rounded-lg shadow-md">
+            <div class="prose lg:prose-lg max-w-none text-slate-600">
+                <h1 class="text-brand-dark">Privacy Policy</h1>
+                <p class="lead"><strong>Last Updated:</strong> August 31, 2025</p>
+                <p class="lead">At Gallaudet ("we," "us," or "our"), your privacy is the cornerstone of our service. This Privacy Policy details how we handle your information when you use our website and services (collectively, the "Service"). It is designed to be transparent, technically accurate, and respectful of your data protection rights under global standards, including the EU's General Data Protection Regulation (GDPR) and India's Digital Personal Data Protection Act (DPDPA).</p>
+
+                <div class="mt-8 p-6 bg-slate-50 rounded-lg border border-slate-200">
+                    <h3 class="!mt-0 !text-brand-dark">Our Core Privacy Promise: Ephemeral Processing</h3>
+                    <p class="!mt-2">The most sensitive data we interact with the video feed from your camera is processed <strong>ephemerally</strong>. This means the data is processed in real-time for immediate translation and is <strong>never stored, saved, or logged on our servers or your device.</strong> The content of your signed conversations is yours and yours alone; we do not want it, and we have built our systems specifically not to retain it.</p>
+                </div>
+
+                <hr class="my-8">
+
+                <h2>1. Information We Collect</h2>
+                <p>To provide and improve our Service, we collect the minimum necessary information, which we categorize as follows:</p>
+                
+                <h4>A. Information You Provide to Us</h4>
+                <ul>
+                    <li><strong>Account Data:</strong> When you create an account, we collect your <strong>email address</strong> and chosen <strong>username</strong>. We also store a cryptographically salted and hashed version of your <strong>password</strong>. We never store your password in a readable format.</li>
+                    <li><strong>Google Authentication:</strong> If you sign up using Google, we receive your <strong>email address</strong> from Google to create and authenticate your account. We do not receive your Google password.</li>
+                    <li><strong>Communications:</strong> When you contact our support team, we collect the content of those communications to assist you.</li>
+                </ul>
+
+                <h4>B. Information We Collect Automatically</h4>
+                <ul>
+                    <li><strong>Session Metadata:</strong> We automatically log non-personal, technical information about your translation sessions. This includes the <strong>start time</strong>, <strong>end time</strong>, and calculated <strong>duration (in seconds)</strong> of each session. This metadata is crucial for providing your session log on your dashboard and for us to analyze service usage, identify performance issues, and make improvements.</li>
+                    <li><strong>Usage Data:</strong> We may collect standard technical information such as your device's IP address, browser type, and operating system for security purposes and to ensure compatibility.</li>
+                </ul>
+                
+                <hr class="my-8">
+
+                <h2>2. Legal Basis and Purpose for Processing Data</h2>
+                <p>We process your data based on the following legal grounds, in compliance with GDPR and DPDPA principles:</p>
+                <ul>
+                    <li><strong>Performance of a Contract:</strong> We process your Account Data and Session Metadata to provide you with the core functionalities of the Service you signed up for, such as authenticating you, displaying your session log, and maintaining your account.</li>
+                    <li><strong>Legitimate Interest:</strong> We process Usage Data to maintain the security, stability, and performance of our infrastructure, which is a legitimate interest for both us and our users.</li>
+                    <li><strong>Consent:</strong> When you register, you consent to this Privacy Policy and our Terms of Service.</li>
+                </ul>
+
+                <hr class="my-8">
+
+                <h2>3. How We Use and Share Information</h2>
+                <p>Your trust is paramount. We do not sell, rent, or trade your personal data.</p>
+                <ul>
+                    <li><strong>To Operate the Service:</strong> Your data is used strictly to provide, maintain, and secure the Service.</li>
+                    <li><strong>With Service Providers:</strong> We may engage trusted third-party services for essential operations like cloud hosting and email delivery. These providers are bound by strict data protection agreements and are only permitted to use the information to perform services on our behalf.</li>
+                    <li><strong>For Legal Compliance:</strong> We may disclose information if required by law or in response to valid legal processes, such as a court order from a competent authority within the jurisdiction of India.</li>
+                </ul>
+
+                <hr class="my-8">
+
+                <h2>4. Data Security and Retention</h2>
+                <p>We implement industry-standard security measures to protect your information. This includes:</p>
+                <ul>
+                    <li><strong>Encryption in Transit:</strong> All data transmitted between your device and our servers is encrypted using TLS (Transport Layer Security).</li>
+                    <li><strong>Password Hashing:</strong> We use the robust bcrypt algorithm for password hashing.</li>
+                    <li><strong>Data Minimization:</strong> We are committed to collecting only the data that is essential to operate the Service.</li>
+                </ul>
+                <p>We retain your Account Data as long as your account is active. Session Metadata may be retained for analytical purposes. You can delete your account at any time, which will permanently remove your associated personal data from our primary systems.</p>
+
+                <hr class="my-8">
+
+                <h2>5. Your Data Protection Rights</h2>
+                <p>You have control over your personal data. We provide the tools to exercise your rights:</p>
+                <ul>
+                    <li><strong>Right to Access & Rectify:</strong> You can access and update your account information (like your username) directly on your <strong>Account Settings</strong> page.</li>
+                    <li><strong>Right to Erasure (Right to be Forgotten):</strong> You can permanently delete your account and all associated personal data from the <strong>Account Settings</strong> page.</li>
+                    <li><strong>Right to Data Portability:</strong> You may request a copy of your personal data by contacting us.</li>
+                </ul>
+
+                <hr class="my-8">
+
+                <h2>6. International Data Transfers</h2>
+                <p>As Gallaudet is based in India, your information will be processed and stored in compliance with Indian law, including the DPDPA. If you are accessing our Service from other regions (like the European Union), please be aware that your data may be transferred to, and stored in, India.</p>
+
+                <hr class="my-8">
+
+                <h2>7. Children's Privacy</h2>
+                <p>Our service is not intended for individuals under the age of 18. We do not knowingly collect personal data from children. If we become aware that we have inadvertently collected such data, we will take steps to delete it immediately.</p>
+                
+                <hr class="my-8">
+
+                <h2>8. Policy Updates and Contact</h2>
+                <p>We may update this Privacy Policy periodically. We will notify you of significant changes via email or a notice on our Service. Your continued use of the Service after such changes constitutes your acceptance of the new policy.</p>
+                <p>If you have any questions, concerns, or wish to exercise your rights, please do not hesitate to contact our Data Grievance Officer:</p>
+                <ul>
+                    <li><strong>Email:</strong> <a href="mailto:privacy@gallaudetapp.com">privacy@gallaudetapp.com</a> (Example Email)</li>
+                    <li><strong>Via our website:</strong> <a href="{{ url_for('contact') }}">Contact Page</a></li>
+                </ul>
+            </div>
+        </div>
+    </main>
+    
+    <!-- ===== START: Universal Hybrid Sidebar ===== -->
+
+<!-- Overlay (for when the menu is open) -->
+<div id="overlay" class="fixed inset-0 bg-black bg-opacity-50 z-40 hidden transition-opacity duration-300"></div>
+
+<!-- Sidebar Menu (Acts as the main navigation for the whole site) -->
+<aside id="sidebar-menu" class="fixed top-0 right-0 h-full w-72 bg-brand-dark text-white p-6 shadow-xl z-50 transform translate-x-full transition-transform duration-300 ease-in-out">
+    
+    <!-- Close Button -->
+    <div class="flex justify-end">
+        <button id="menu-close-btn" class="p-2 rounded-full hover:bg-slate-700 focus:outline-none focus:ring-2 focus:ring-white">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+        </button>
+    </div>
+    
+    <!-- Menu Links -->
+    <nav class="mt-8 flex flex-col space-y-2">
+        {% if current_user.is_authenticated %}
+
+            <!-- ===== START: ADD THIS ADMIN LINK ===== -->
+                {% if current_user.is_admin %}
+                    <a href="{{ url_for('admin.index') }}" class="hidden sm:inline-block px-4 py-2 text-sm font-medium text-blue-600 hover:text-black transition-colors">Admin Panel</a>
+                {% endif %}
+            <!-- ===== END: ADD THIS ADMIN LINK ===== -->
+
+            <!-- ===== LOGGED-IN USER LINKS ===== -->
+            <a href="{{ url_for('dashboard') }}" class="flex items-center px-4 py-3 rounded-lg text-lg text-slate-300 hover:bg-slate-700 hover:text-white transition-colors">
+                <svg class="w-5 h-5 mr-3" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
+                Dashboard
+            </a>
+            <a href="{{ url_for('live_translation') }}" class="flex items-center px-4 py-3 rounded-lg text-lg text-slate-300 hover:bg-slate-700 hover:text-white transition-colors">
+                <svg class="w-5 h-5 mr-3" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.55a2 2 0 01.996 1.713V17a2 2 0 01-2 2H6a2 2 0 01-2-2v-5.287c0-.77.525-1.463 1.268-1.724L10 8l5 2zm-5 5h.01M15 12h.01"/></svg>
+                Live Translation
+            </a>
+            <a href="{{ url_for('practice') }}" class="flex items-center px-4 py-3 rounded-lg text-lg text-slate-300 hover:bg-slate-700 hover:text-white">
+    <!-- You can find a suitable icon from a site like heroicons.com -->
+    <svg class="w-5 h-5 mr-3" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" /></svg>
+    Practice Mode
+</a>
+            <hr class="border-slate-600 my-4">
+            <a href="{{ url_for('index') }}" class="px-4 py-3 rounded-lg text-lg text-slate-300 hover:bg-slate-700 hover:text-white transition-colors">Home</a>
+            <a href="{{ url_for('careers') }}" class="px-4 py-3 rounded-lg text-lg text-slate-300 hover:bg-slate-700 hover:text-white transition-colors">Careers</a>
+            <a href="{{ url_for('about') }}" class="px-4 py-3 rounded-lg text-lg text-slate-300 hover:bg-slate-700 hover:text-white transition-colors">About</a>
+            <a href="{{ url_for('contact') }}" class="px-4 py-3 rounded-lg text-lg text-slate-300 hover:bg-slate-700 hover:text-white transition-colors">Contact Us</a>
+            <hr class="border-slate-600 my-4">
+            <a href="{{ url_for('account') }}" class="flex items-center px-4 py-3 rounded-lg text-lg text-slate-300 hover:bg-slate-700 hover:text-white transition-colors">
+                <svg class="w-5 h-5 mr-3" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" /></svg>
+                Account Settings
+            </a>
+            <a href="{{ url_for('logout') }}" class="flex items-center px-4 py-3 rounded-lg text-lg text-red-400 hover:bg-slate-700 hover:text-white transition-colors">
+                <svg class="w-5 h-5 mr-3" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" /></svg>
+                Logout
+            </a>
+            
+        {% else %}
+            <!-- ===== PUBLIC USER LINKS ===== -->
+            <a href="{{ url_for('register') }}" class="px-4 py-3 rounded-lg text-lg text-slate-300 hover:bg-slate-700 hover:text-white transition-colors text-center">Register</a>
+            <a href="{{ url_for('signin') }}" class="px-4 py-3 rounded-lg text-lg text-slate-300 hover:bg-slate-700 hover:text-white transition-colors text-center">Sign In</a>
+            <hr class="border-slate-600 my-4">
+            <a href="{{ url_for('index') }}" class="px-4 py-3 rounded-lg text-lg text-slate-300 hover:bg-slate-700 hover:text-white transition-colors">Home</a>
+            <a href="{{ url_for('careers') }}" class="px-4 py-3 rounded-lg text-lg text-slate-300 hover:bg-slate-700 hover:text-white transition-colors">Careers</a>
+            <a href="{{ url_for('about') }}" class="px-4 py-3 rounded-lg text-lg text-slate-300 hover:bg-slate-700 hover:text-white transition-colors">About</a>
+            <a href="{{ url_for('contact') }}" class="px-4 py-3 rounded-lg text-lg text-slate-300 hover:bg-slate-700 hover:text-white transition-colors">Contact Us</a>
+            
+        {% endif %}
+    </nav>
+</aside>
+<!-- ===== END: Universal Hybrid Sidebar ===== -->
+<script src="{{ url_for('static', filename='main.js') }}"></script>
+{% include '_footer.html' %}
+</body>
+</html>

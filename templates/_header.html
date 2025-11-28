@@ -1,0 +1,42 @@
+<!-- ===== REPLACE your existing header with this entire block on ALL pages ===== -->
+<header class="p-6 bg-brand-light">
+    <nav class="flex items-center justify-between max-w-7xl mx-auto">
+        
+        <!-- Left Side: Logo and Company Name -->
+        <a href="{{ url_for('index') }}" class="flex items-center space-x-3">
+            <!-- <span class="text-2xl font-extrabold text-brand-dark tracking-tight">Gallaudet</span> -->
+            <img src="{{ url_for('static', filename='logo.png') }}" alt="Gallaudet Logo" class="h-11 w-45"> <!-- Assumes logo.png is in static folder -->
+        </a>
+
+        <!-- Right Side: Navigation Buttons -->
+        <div class="flex items-center space-x-4">
+            
+            {% if current_user.is_authenticated %}
+
+            <!-- ===== START: ADD THIS ADMIN LINK ===== -->
+                {% if current_user.is_admin %}
+                    <a href="{{ url_for('admin.index') }}" class="hidden sm:inline-block px-4 py-2 text-sm font-medium text-blue-600 hover:text-black transition-colors">Admin Panel</a>
+                {% endif %}
+            <!-- ===== END: ADD THIS ADMIN LINK ===== -->
+
+                <!-- Show these links if the user IS logged in -->
+                <a href="{{ url_for('live_translation') }}" class="hidden sm:inline-block px-4 py-2 text-sm font-medium text-slate-700 hover:text-black transition-colors">Live Translation</a>
+                <a href="{{ url_for('practice') }}" class="hidden sm:inline-block px-4 py-2 text-sm font-medium text-slate-700 hover:text-black transition-colors">Practice Mode</a>
+                <a href="{{ url_for('dashboard') }}" class="hidden sm:inline-block px-4 py-2 text-sm font-medium text-slate-700 hover:text-black transition-colors">Dashboard</a>
+                <a href="{{ url_for('logout') }}" class="hidden sm:inline-block px-4 py-2 text-sm font-medium text-white bg-brand-dark rounded-lg hover:bg-slate-700 transition-colors">Logout</a>
+            {% else %}
+                <!-- Show these links if the user is NOT logged in -->
+                <a href="{{ url_for('signin') }}" class="hidden sm:inline-block px-4 py-2 text-sm font-medium text-slate-700 hover:text-black transition-colors">Sign In</a>
+                <a href="{{ url_for('register') }}" class="hidden sm:inline-block px-4 py-2 text-sm font-medium text-white bg-brand-dark rounded-lg hover:bg-slate-700 transition-colors">Register</a>
+            {% endif %}
+
+            <!-- Mobile Menu (Hamburger) Button -->
+            <button id="menu-open-btn" class="p-2 rounded-md hover:bg-stone-200 focus:outline-none focus:ring-2 focus:ring-slate-500">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+                </svg>
+            </button>
+        </div>
+    </nav>
+</header>
+<!-- ===== END: UNIVERSAL HEADER ===== -->

@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live Translation - Gallaudet</title>
+    <link href="{{ url_for('static', filename='style.css') }}" rel="stylesheet">
+    <script src="https://cdn.socket.io/4.7.5/socket.io.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'brand-dark': 'var(--color-brand-dark)',
+                        'brand-light': 'var(--color-brand-light)',
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+
+<body class="bg-brand-light text-slate-800 antialiased">
+
+    {% include '_header.html' %}
+
+    <main class="max-w-7xl mx-auto py-10 px-4 sm:px-6 lg:px-8">
+        <div class="text-center">
+            <h1 class="text-4xl font-extrabold text-brand-dark tracking-tight">Live Finger-Spelling Translation</h1>
+            <p class="mt-4 max-w-2xl mx-auto text-lg text-slate-500">Position yourself in the frame below. The
+                recognized letters will appear in the textbox.</p>
+            <div
+                class="mt-4 p-3 bg-yellow-100 border border-yellow-300 text-yellow-800 rounded-md max-w-2xl mx-auto text-sm">
+                <strong>Note:</strong> This tool currently recognizes the 26 letters of the ASL alphabet. Full sign
+                translation is in development.
+            </div>
+        </div>
+
+        <div class="mt-8 grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
+            <div class="relative bg-brand-dark rounded-xl shadow-lg p-2 sticky top-10 w-full aspect-video">
+                <!-- Video from user's webcam. CSS handles mirroring. -->
+                <video id="webcam" autoplay playsinline class="w-full h-full rounded-lg"
+                    style="transform: scaleX(-1);"></video>
+                <!-- Canvas for drawing landmarks, perfectly overlaid on top of the video -->
+                <canvas id="landmark_canvas" class="absolute top-0 left-0 w-full h-full"></canvas>
+                <!-- Hidden canvas for capturing raw (non-mirrored) frames -->
+                <canvas id="capture_canvas" class="hidden"></canvas>
+            </div>
+
+            <div class="bg-white p-6 rounded-xl shadow-lg">
+                <h2 class="text-2xl font-bold text-slate-800 mb-4">Recognized Text</h2>
+                <textarea id="prediction-result"
+                    class="w-full h-48 p-3 border border-slate-300 rounded-md bg-slate-50 text-lg"></textarea>
+                <div class="mt-4 flex justify-end space-x-4">
+                    <button id="backspace-btn"
+                        class="px-5 py-2 text-sm font-semibold text-slate-700 bg-slate-200 rounded-md hover:bg-slate-300">Backspace</button>
+                    <button id="space-btn"
+                        class="px-5 py-2 text-sm font-semibold text-slate-700 bg-slate-200 rounded-md hover:bg-slate-300">Space</button>
+                    <button id="clear-btn"
+                        class="px-5 py-2 text-sm font-semibold text-white bg-red-600 rounded-md hover:bg-red-700">Clear</button>
+                </div>
+            </div>
+        </div>
+    </main>
+    {% include '_footer.html' %}
+
+    <script src="{{ url_for('static', filename='main.js') }}"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const ml_service_url = 'http://127.0.0.1:5001';
+            const main_app_url = '{{ request.url_root }}';
+            const sessionId = { session_id, tojson }
+        });
+
+        const video = document.getElementById('webcam');
+        const captureCanvas = document.getElementById('capture_canvas');
+        const captureContext = captureCanvas.getContext('2d');
+        const landmarkCanvas = document.getElementById('landmark_canvas');
+        const landmarkContext = landmarkCanvas.getContext('2d');
+        const textArea = document.getElementById('prediction-result');
+
+        let lastPrediction = '';
+        let samePredictionCount = 0;
+        const PREDICTION_THRESHOLD = 5;
+
+        const socket = io(ml_service_url);
+        socket.on('connect', () => {
+            console.log(`Connected to ML Service`);
+            setInterval(sendFrameForPrediction, 200);
+        });
+
+        navigator.mediaDevices.getUserMedia({ video: true })
+            .then(stream => {
+                video.srcObject = stream;
+                video.addEventListener('loadedmetadata', () => {
+                    landmarkCanvas.width = video.videoWidth;
+                    landmarkCanvas.height = video.videoHeight;
+                    captureCanvas.width = video.videoWidth;
+                    captureCanvas.height = video.videoHeight;
+                });
+            })
+            .catch(err => console.error("Webcam Error:", err));
+
+        function sendFrameForPrediction() {
+            if (video.readyState === video.HAVE_ENOUGH_DATA) {
+                // Capture the raw, non-mirrored frame
+                captureContext.drawImage(video, 0, 0, video.videoWidth, video.videoHeight);
+                const imageData = captureCanvas.toDataURL('image/jpeg', 0.8);
+                socket.emit('process_frame', { image_data: imageData });
+            }
+        }
+
+        socket.on('prediction_result', (data) => {
+            drawLandmarks(data.landmarks);
+
+            const currentPrediction = data.prediction;
+            if (currentPrediction && currentPrediction === lastPrediction) {
+                samePredictionCount++;
+            } else {
+                samePredictionCount = 0;
+            }
+            lastPrediction = currentPrediction;
+
+            if (samePredictionCount > PREDICTION_THRESHOLD) {
+                if (currentPrediction) {
+                    textArea.value += currentPrediction;
+                }
+                samePredictionCount = 0;
+            }
+        });
+
+        // ===== START: THE DEFINITIVE FIX FOR LANDMARK DRAWING =====
+        function drawLandmarks(landmarks) {
+            landmarkContext.clearRect(0, 0, landmarkCanvas.width, landmarkCanvas.height);
+
+            if (landmarks && landmarks.length > 0) {
+                landmarkContext.strokeStyle = 'rgba(0, 255, 0, 0.8)';
+                landmarkContext.lineWidth = 2;
+
+                const connections = [[0, 1], [1, 2], [2, 3], [3, 4], [0, 5], [5, 6], [6, 7], [7, 8], [5, 9], [9, 10], [10, 11], [11, 12], [9, 13], [13, 14], [14, 15], [15, 16], [13, 17], [17, 18], [18, 19], [19, 20], [0, 17]];
+
+                connections.forEach(pair => {
+                    const start = landmarks[pair[0]];
+                    const end = landmarks[pair[1]];
+                    if (start && end) {
+                        // The backend has already sent us coordinates for a mirrored view.
+                        // We draw them directly onto the canvas without flipping them again.
+                        landmarkContext.beginPath();
+                        landmarkContext.moveTo(landmarkCanvas.width * start.x, landmarkCanvas.height * start.y);
+                        landmarkContext.lineTo(landmarkCanvas.width * end.x, landmarkCanvas.height * end.y);
+                        landmarkContext.stroke();
+                    }
+                });
+            }
+        }
+        // ===== END: THE DEFINITIVE FIX FOR LANDMARK DRAWING =====
+
+        document.getElementById('clear-btn').addEventListener('click', () => textArea.value = '');
+        document.getElementById('space-btn').addEventListener('click', () => textArea.value += ' ');
+        document.getElementById('backspace-btn').addEventListener('click', () => textArea.value = textArea.value.slice(0, -1));
+        window.addEventListener('beforeunload', () => {
+            if (sessionId) navigator.sendBeacon(`${main_app_url}session/end`, JSON.stringify({ session_id: sessionId }));
+        });
+    </script>
+</body>
+
+</html>

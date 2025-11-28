@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Careers - Modern UI</title>
+    <!-- Link to your central stylesheet -->
+    <link href="{{ url_for('static', filename='style.css') }}" rel="stylesheet">
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+  // This config now reads from your style.css file!
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          'brand-dark': 'var(--color-brand-dark)',
+          'brand-light': 'var(--color-brand-light)',
+        }
+      }
+    }
+  }
+</script>
+</head>
+<body class="bg-brand-light text-slate-800 antialiased">
+
+{% include '_header.html' %}
+
+    <!-- Main Content -->
+    <main class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
+        
+        <!-- Section: Header -->
+        <div class="text-center">
+            <h1 class="text-4xl font-extrabold text-brand-dark tracking-tight sm:text-5xl">Join Us in Engineering the Future of Communication</h1>
+            <p class="mt-4 max-w-2xl mx-auto text-lg text-slate-500">
+                At Gallaudet, we're not just building an app—we're solving a fundamental human challenge with cutting-edge AI. If you are a builder, a problem-solver, and are driven by creating technology that matters, this is your opportunity to make a defining impact.
+            </p>
+        </div>
+
+        <!-- Section: Core Values & Culture (Overhauled "Why Work Here") -->
+        <div class="mt-20">
+            <h2 class="text-3xl font-extrabold text-center text-brand-dark">Our Engineering Culture</h2>
+            <div class="mt-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 text-left">
+                <!-- Value 1: High Impact -->
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <svg class="w-10 h-10 text-brand-dark" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>
+                    <h3 class="mt-4 text-xl font-bold">Mission-Driven Impact</h3>
+                    <p class="mt-2 text-slate-500">Your code will directly empower our users. As a lean, agile team, every contribution has a measurable effect on our product's success and accessibility.</p>
+                </div>
+                <!-- Value 2: Technical Growth -->
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <svg class="w-10 h-10 text-brand-dark" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" /></svg>
+                    <h3 class="mt-4 text-xl font-bold">Complex Problem Solving</h3>
+                    <p class="mt-2 text-slate-500">Work on challenging problems in computer vision, machine learning, and real-time data streaming. We encourage continuous learning and mastery of new technologies.</p>
+                </div>
+                <!-- Value 3: Global & Flexible -->
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <svg class="w-10 h-10 text-brand-dark" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path d="M12 2C14.5013 4.73835 15.9228 8.29203 16 12C15.9228 15.708 14.5013 19.2616 12 22M12 2C9.49872 4.73835 8.07725 8.29203 8 12C8.07725 15.708 9.49872 19.2616 12 22M12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22M12 2C17.5228 2 22 6.47715 22 12C22 17.5228 17.5228 22 12 22M2.50002 9H21.5M2.5 15H21.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
+                    <h3 class="mt-4 text-xl font-bold">Global & Flexible</h3>
+                    <p class="mt-2 text-slate-500">While our core team is based in India, we operate on a remote-first principle. We hire the best talent, regardless of location, and trust you to deliver results.</p>
+                </div>
+                <!-- Value 4: Ownership & Autonomy -->
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <svg class="w-10 h-10 text-brand-dark" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 7a4 4 0 11-6 0 4 4 0 016 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" /></svg>
+                    <h3 class="mt-4 text-xl font-bold">Ownership & Autonomy</h3>
+                    <p class="mt-2 text-slate-500">We value asynchronous communication and individual ownership. You will be responsible for your domain, from concept and architecture to deployment.</p>
+                </div>
+            </div>
+        </div>
+<!--
+        <!-- Section: Open Positions 
+        <div id="open-positions" class="mt-20">
+            <div class="text-center">
+                <h2 class="text-3xl font-extrabold text-brand-dark">Open Roles</h2>
+                <p class="mt-2 text-lg text-slate-500">Help us shape the future of accessible technology.</p>
+            </div>
+            <div class="mt-12 bg-white rounded-lg shadow-md">
+                <!-- Position List Container
+                <div class="divide-y divide-slate-200">
+                    <!-- EXAMPLE of an open position. Duplicate this block for each role. 
+                    <div class="p-6">
+                        <div class="flex flex-col sm:flex-row justify-between sm:items-center">
+                            <div>
+                                <h3 class="text-xl font-bold text-slate-800">Machine Learning Engineer (Computer Vision)</h3>
+                                <div class="mt-2 flex items-center space-x-3 text-sm text-slate-500">
+                                    <span class="inline-flex items-center bg-purple-100 text-purple-600 px-3 py-1 rounded-full font-semibold">Engineering</span>
+                                    <span class="inline-flex items-center bg-green-100 text-green-600 px-3 py-1 rounded-full font-semibold">Remote</span>
+                                </div>
+                            </div>
+                            <a href="#" class="mt-4 sm:mt-0 flex-shrink-0 inline-block bg-brand-dark text-white font-bold py-2 px-6 rounded-lg hover:bg-slate-700 transition-colors">Apply Now</a>
+                        </div>
+                        <p class="mt-4 text-slate-500">We are seeking a talented ML Engineer to improve the accuracy and vocabulary of our core sign language recognition models. You will be responsible for data pipelines, model training, and optimization for real-time performance.</p>
+                    </div>
+
+                    <!-- If there are NO other open positions, show this message 
+                    <div class="p-8 text-center text-slate-500">
+                        <p class="text-lg font-semibold">More roles opening soon!</p>
+                        <p>We are growing quickly. If you don't see an open role that fits but believe you can contribute, we'd still love to hear from you.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+-->
+        <!-- Section: Spontaneous Application -->
+        <div id="spontaneous-application" class="mt-16 text-center bg-slate-200 p-12 rounded-lg">
+            <h2 class="text-3xl font-bold text-brand-dark">Don't See an Opening?</h2>
+            <p class="mt-4 max-w-2xl mx-auto text-slate-600">We are always looking for passionate engineers, designers, and thinkers who are driven by our mission. If that's you, send us your portfolio and tell us why you want to build with us.</p>
+            <a href="mailto:careers@gallaudet.com" class="mt-6 inline-block bg-brand-dark text-white font-bold py-3 px-8 rounded-lg hover:bg-slate-700 transition-colors">
+                Contact Hiring
+            </a>
+        </div>
+        
+    </main>
+
+    <!-- ===== START: Universal Hybrid Sidebar ===== -->
+
+<!-- Overlay (for when the menu is open) -->
+<div id="overlay" class="fixed inset-0 bg-black bg-opacity-50 z-40 hidden transition-opacity duration-300"></div>
+
+<!-- Sidebar Menu (Acts as the main navigation for the whole site) -->
+<aside id="sidebar-menu" class="fixed top-0 right-0 h-full w-72 bg-brand-dark text-white p-6 shadow-xl z-50 transform translate-x-full transition-transform duration-300 ease-in-out">
+    
+    <!-- Close Button -->
+    <div class="flex justify-end">
+        <button id="menu-close-btn" class="p-2 rounded-full hover:bg-slate-700 focus:outline-none focus:ring-2 focus:ring-white">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+        </button>
+    </div>
+    
+    <!-- Menu Links -->
+    <nav class="mt-8 flex flex-col space-y-2">
+        {% if current_user.is_authenticated %}
+            <!-- ===== LOGGED-IN USER LINKS ===== -->
+            <a href="{{ url_for('dashboard') }}" class="flex items-center px-4 py-3 rounded-lg text-lg text-slate-300 hover:bg-slate-700 hover:text-white transition-colors">
+                <svg class="w-5 h-5 mr-3" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
+                Dashboard
+            </a>
+            <a href="{{ url_for('live_translation') }}" class="flex items-center px-4 py-3 rounded-lg text-lg text-slate-300 hover:bg-slate-700 hover:text-white transition-colors">
+                <svg class="w-5 h-5 mr-3" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.55a2 2 0 01.996 1.713V17a2 2 0 01-2 2H6a2 2 0 01-2-2v-5.287c0-.77.525-1.463 1.268-1.724L10 8l5 2zm-5 5h.01M15 12h.01"/></svg>
+                Live Translation
+            </a>
+            <a href="{{ url_for('practice') }}" class="flex items-center px-4 py-3 rounded-lg text-lg text-slate-300 hover:bg-slate-700 hover:text-white">
+    <!-- You can find a suitable icon from a site like heroicons.com -->
+    <svg class="w-5 h-5 mr-3" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" /></svg>
+    Practice Mode
+</a>
+            <hr class="border-slate-600 my-4">
+            <a href="{{ url_for('index') }}" class="px-4 py-3 rounded-lg text-lg text-slate-300 hover:bg-slate-700 hover:text-white transition-colors">Home</a>
+            <a href="{{ url_for('careers') }}" class="px-4 py-3 rounded-lg text-lg text-white bg-slate-700 hover:bg-slate-600 transition-colors">Careers</a>
+            <a href="{{ url_for('about') }}" class="px-4 py-3 rounded-lg text-lg text-slate-300 hover:bg-slate-700 hover:text-white transition-colors">About</a>
+            <a href="{{ url_for('contact') }}" class="px-4 py-3 rounded-lg text-lg text-slate-300 hover:bg-slate-700 hover:text-white transition-colors">Contact Us</a>
+            <hr class="border-slate-600 my-4">
+            <a href="{{ url_for('account') }}" class="flex items-center px-4 py-3 rounded-lg text-lg text-slate-300 hover:bg-slate-700 hover:text-white transition-colors">
+                <svg class="w-5 h-5 mr-3" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" /></svg>
+                Account Settings
+            </a>
+            <a href="{{ url_for('logout') }}" class="flex items-center px-4 py-3 rounded-lg text-lg text-red-400 hover:bg-slate-700 hover:text-white transition-colors">
+                <svg class="w-5 h-5 mr-3" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" /></svg>
+                Logout
+            </a>
+            
+        {% else %}
+            <!-- ===== PUBLIC USER LINKS ===== -->
+            <a href="{{ url_for('register') }}" class="px-4 py-3 rounded-lg text-lg text-slate-300 hover:bg-slate-700 hover:text-white transition-colors text-center">Register</a>
+            <a href="{{ url_for('signin') }}" class="px-4 py-3 rounded-lg text-lg text-slate-300 hover:bg-slate-700 hover:text-white transition-colors text-center">Sign In</a>
+            <hr class="border-slate-600 my-4">
+            <a href="{{ url_for('index') }}" class="px-4 py-3 rounded-lg text-lg text-slate-300 hover:bg-slate-700 hover:text-white transition-colors">Home</a>
+            <a href="{{ url_for('careers') }}" class="px-4 py-3 rounded-lg text-lg text-slate-300 hover:bg-slate-700 hover:text-white transition-colors">Careers</a>
+            <a href="{{ url_for('about') }}" class="px-4 py-3 rounded-lg text-lg text-slate-300 hover:bg-slate-700 hover:text-white transition-colors">About</a>
+            <a href="{{ url_for('contact') }}" class="px-4 py-3 rounded-lg text-lg text-slate-300 hover:bg-slate-700 hover:text-white transition-colors">Contact Us</a>
+            
+        {% endif %}
+    </nav>
+</aside>
+<!-- ===== END: Universal Hybrid Sidebar ===== -->
+
+    <script src="{{ url_for('static', filename='main.js') }}"></script>
+
+{% include '_footer.html' %}
+
+</body>
+</html>
